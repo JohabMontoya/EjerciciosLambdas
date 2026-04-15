@@ -4,9 +4,14 @@ public class TareaLambdas {
     public static void main(String[] args) {
 
         ArrayList<Integer> numeros = new ArrayList<>();
+        ArrayList<String> remover = new ArrayList<>();
         numeros.add(4);
         numeros.add(5);
         numeros.add(6);
+        remover.add("Número");
+        remover.add("Nombre");
+        remover.add("Hola");
+        String letra = "n";
         int factor = 5;
         multiplicador(numeros, factor);
     }
@@ -27,6 +32,9 @@ public class TareaLambdas {
         System.out.println(numeros);
     }
 
+    public static void filtroSelectivo(ArrayList<String> remover, String letra){
+        remover.removeIf(n -> n.startsWith(letra));
+    }
 
 
 
