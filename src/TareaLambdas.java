@@ -59,15 +59,25 @@ public class TareaLambdas {
         System.out.println("Cadena con la letra " + letra + " removida: " + remover);
     }
 
-    public static ArrayList conversorMayuscula(ArrayList<String> palabras){
+    public static ArrayList<String> conversorMayuscula(ArrayList<String> palabras){
+        // Si la lista viene nula, regresamos una lista vacía
+        if (palabras == null) return new ArrayList<>();
+
         // Muestra la cadena original antes de modificarla
         System.out.println("Palabras para transformar a mayusculas: " + palabras);
+
+        // Creamos una nueva lista transformando cada elemento con stream + map
         ArrayList<String> nuevo = palabras.stream()
-                .map(String::toUpperCase)
+                .map(s -> (s == null) ? null : s.toUpperCase())
                 .collect(Collectors.toCollection(ArrayList :: new));
-        System.out.println("Palabras en mayusculas: " + nuevo);
+
+        // Imprimo la lista modificada
+        System.out.println("Palabras en mayúsculas: " + nuevo);
+
+        // Regresamos el resultado
         return nuevo;
     }
 
-    public static
+
+
 }
