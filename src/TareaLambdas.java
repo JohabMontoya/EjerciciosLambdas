@@ -11,9 +11,12 @@ public class TareaLambdas {
         remover.add("Número");
         remover.add("Nombre");
         remover.add("Hola");
+        remover.add("Cirujano");
         String letra = "n";
+        int tamanoCadena = 5;
         int factor = 5;
         multiplicador(numeros, factor);
+        filtroSelectivo(remover, letra, tamanoCadena);
     }
 
     // Multiplica cada elemento de la lista por un factor dado
@@ -32,11 +35,16 @@ public class TareaLambdas {
         System.out.println(numeros);
     }
 
-    public static void filtroSelectivo(ArrayList<String> remover, String letra){
-        remover.removeIf(n -> n.startsWith(letra));
+    public static void filtroSelectivo(ArrayList<String> remover, String letra, int tamanoCadena){
+        // Muestra qué criterios de eliminación se van a aplicar
+        System.out.println("Se eliminaran palabras que empiecen por: '" + letra + "'. O tengan una longitud de: " + tamanoCadena);
+        // Imprime la lista antes de filtrar
+        System.out.println("Cadena original: " + remover);
+        // Pasa la letra a minúsculas para comparar sin importar mayúsculas
+        String l = letra.toLowerCase();
+        // Elimina si: empieza por la letra O si su longitud es menor a tamanoCadena
+        remover.removeIf(n -> n.toLowerCase().startsWith(l) || n.length() < tamanoCadena);
+        // Imprime la lista después de filtrar
+        System.out.println("Cadena con la letra " + letra + " removida: " + remover);
     }
-
-
-
-
 }
