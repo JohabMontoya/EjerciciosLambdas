@@ -68,4 +68,6 @@ public class TareaLambdas {
         System.out.println("Palabras en mayusculas: " + nuevo);
         return nuevo;
     }
+
+    public static
 }
