@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UtileriaCadenas {
@@ -86,5 +83,42 @@ public class UtileriaCadenas {
         ArrayList<String> resultado = new ArrayList<>(listaFiltrada);
 
         return resultado;
+    }
+
+    public static HashSet<String> deduplicacionPalabras(String frase, int N) {
+        // mostrar la frase original
+        System.out.println("\n Deduplicación de Palabras");
+        System.out.println("\nFrase original: " + frase);
+
+        // Manejo de frase nula o vacía
+        if (frase == null || frase.isBlank()) {
+            System.out.println("Palabras únicas filtradas: []");
+            return new HashSet<>();
+        }
+
+        // Divide la frase ignorando signos de puntuación (separa por "no letras/números")
+        String[] palabras = frase.split("[^\\p{L}\\p{N}]+");
+
+        // Stream del array -> filtra por tamaño -> minúsculas -> HashSet (sin repetidos)
+        HashSet<String> resultado = Arrays.stream(palabras)
+                .filter(p -> !p.isBlank())
+                .filter(p -> p.length() < N)
+                .map(String::toLowerCase)
+                .collect(Collectors.toCollection(HashSet::new));
+
+        return resultado;
+    }
+
+    public static void topeFrecuencias(HashMap<String, Integer> map, int N) {
+        System.out.println("\nTop Frecuencias");
+        System.out.println("\nMapa antes: " + map);
+
+        // Si el mapa es null, no hay nada que modificar
+        if (map == null) return;
+
+        // Modifica el mapa original: si frecuencia > N, se fija en N; si no, se deja igual
+        map.replaceAll((palabra, frecuencia) -> (frecuencia > N) ? N : frecuencia);
+
+        System.out.println("Mapa después: " + map);
     }
 }

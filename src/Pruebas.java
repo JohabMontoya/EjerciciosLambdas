@@ -2,6 +2,7 @@ import claseTodosLosMetodos.TareaLambdas;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Pruebas {
     public static void main(String[] args) {
@@ -57,6 +58,10 @@ public class Pruebas {
         map.put("Hola", 2);
         int frec = 2;
 
+        String frase = "Yo soy un robotin, soy un robotin que le encanta bailar";
+        int N = 5;
+
+        int NTope = 2; // máximo permitido
 
         UtileriaNumeros.multiplicador(numeros, factor);
         UtileriaCadenas.filtroSelectivo(remover, letra, tamanoCadena);
@@ -68,6 +73,8 @@ public class Pruebas {
         ArrayList<String> resultado = UtileriaCadenas.clasificadorPalabras(map, frec);
         System.out.println("Mapa original: " + map);
         System.out.println("Palabras con frecuencia menor a " + frecuencia + ": " + resultado);
-
+        HashSet<String> result = UtileriaCadenas.deduplicacionPalabras(frase, N);
+        System.out.println("Resultado: " + result);
+        UtileriaCadenas.topeFrecuencias(contador, NTope);
     }
 }
