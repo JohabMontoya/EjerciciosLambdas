@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
@@ -40,6 +41,7 @@ public class TareaLambdas {
         filtroSelectivo(remover, letra, tamanoCadena);
         conversorMayuscula(palabras);
         cuadrosUnicos(duplicados);
+        HashMap<String, Integer> mapa = mapaLongitudes(palabras);
     }
 
     // Multiplica cada elemento de la lista por un factor dado
@@ -112,7 +114,16 @@ public class TareaLambdas {
         return duplicados;
     }
 
-    public HashMap<> mapaLongitudes(){
-
+    public static HashMap<String, Integer> mapaLongitudes(ArrayList<String> clave){
+        System.out.println("Estas son las palabras que se usarán como clave "  + clave);
+        HashMap<String, Integer> palabraClave = clave.stream()
+                .collect(Collectors.toMap(
+                        s -> s,
+                        s -> s.length(),
+                        (a, b) -> a, HashMap::new));
+        System.out.println("Estas son las palabras con su respectiva clave: " + palabraClave);
+        return palabraClave;
     }
+
+
 }
