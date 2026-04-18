@@ -10,6 +10,7 @@ public class TareaLambdas {
         ArrayList<String> remover = new ArrayList<>();
         ArrayList<String> palabras = new ArrayList<>();
         ArrayList<Integer> duplicados = new ArrayList<>();
+        HashMap<String, Double> lista = new HashMap<>();
 
         numeros.add(4);
         numeros.add(5);
@@ -33,6 +34,11 @@ public class TareaLambdas {
         duplicados.add(5);
         duplicados.add(-6);
 
+        lista.put("Cheeseburger", 10.00);
+        lista.put("Boneless", 6.00);
+        lista.put("Papas a la francesa", 3.00);
+        lista.put("Combo", 15.00);
+
         char letra = 'n';
         int tamanoCadena = 5;
         int factor = 5;
@@ -42,6 +48,7 @@ public class TareaLambdas {
         conversorMayuscula(palabras);
         cuadrosUnicos(duplicados);
         HashMap<String, Integer> mapa = mapaLongitudes(palabras);
+        modificadorInventario(lista);
     }
 
     // Multiplica cada elemento de la lista por un factor dado
@@ -115,14 +122,33 @@ public class TareaLambdas {
     }
 
     public static HashMap<String, Integer> mapaLongitudes(ArrayList<String> clave){
+        // Muestra la lista original
         System.out.println("Estas son las palabras que se usarán como clave "  + clave);
+
+        // Crea un HashMap donde: palabra -> longitud
         HashMap<String, Integer> palabraClave = clave.stream()
                 .collect(Collectors.toMap(
-                        s -> s,
-                        s -> s.length(),
-                        (a, b) -> a, HashMap::new));
+                        s -> s, // clave
+                        s -> s.length(), // valor
+                        (a, b) -> a, HashMap::new)); // si se repite la palabra, se queda con la primera
+
+        // Muestra el mapa resultante
         System.out.println("Estas son las palabras con su respectiva clave: " + palabraClave);
         return palabraClave;
+    }
+
+    public static void modificadorInventario(HashMap<String, Double> productos) {
+        // Descuento fijo del 10%
+        double descuento = 0.10;
+        System.out.println();
+        // Recorre cada entrada del mapa:
+        productos.forEach((producto, precio) -> {
+            // Calcula el precio con descuento
+            double precioConDescuento = precio * (1 - descuento);
+
+            // Imprime el producto y su precio ya con el 10% aplicado
+            System.out.println(producto + " -> $" + precioConDescuento + " (10% off)");
+        });
     }
 
 
