@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 public class TareaLambdas {
@@ -8,22 +9,37 @@ public class TareaLambdas {
         ArrayList<Integer> numeros = new ArrayList<>();
         ArrayList<String> remover = new ArrayList<>();
         ArrayList<String> palabras = new ArrayList<>();
+        ArrayList<Integer> duplicados = new ArrayList<>();
+
         numeros.add(4);
         numeros.add(5);
         numeros.add(6);
+
         remover.add("Número");
         remover.add("Nombre");
         remover.add("Hola");
         remover.add("Cirujano");
+
         palabras.add("Misterio");
         palabras.add("hermano");
         palabras.add("mono");
+
+        duplicados.add(8);
+        duplicados.add(8);
+        duplicados.add(2);
+        duplicados.add(2);
+        duplicados.add(2);
+        duplicados.add(5);
+        duplicados.add(5);
+
         char letra = 'n';
         int tamanoCadena = 5;
         int factor = 5;
+
         multiplicador(numeros, factor);
         filtroSelectivo(remover, letra, tamanoCadena);
         conversorMayuscula(palabras);
+        cuadrosUnicos(duplicados);
     }
 
     // Multiplica cada elemento de la lista por un factor dado
@@ -78,6 +94,14 @@ public class TareaLambdas {
         return nuevo;
     }
 
-
-
+    public static HashSet<Integer> cuadrosUnicos (ArrayList<Integer> numeros){
+        System.out.println("Valores antes de modificarlos: " + numeros);
+        HashSet<Integer> duplicados = new HashSet<>(
+        numeros.stream()
+                .filter(n -> n %2 == 0)
+                .map(n -> n * n)
+                .collect(Collectors.toSet()));
+        System.out.println("Valores después de modificarlos: " + duplicados );
+        return duplicados;
+    }
 }
