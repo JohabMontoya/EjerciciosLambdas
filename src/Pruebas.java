@@ -51,6 +51,13 @@ public class Pruebas {
         frecuencia.add("Abrir");
         frecuencia.add("Abrir");
 
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Abrir", 3);
+        map.put("Estatua", 1);
+        map.put("Hola", 2);
+        int frec = 2;
+
+
         UtileriaNumeros.multiplicador(numeros, factor);
         UtileriaCadenas.filtroSelectivo(remover, letra, tamanoCadena);
         UtileriaCadenas.conversorMayuscula(palabras);
@@ -58,5 +65,9 @@ public class Pruebas {
         HashMap<String, Integer> mapa = UtileriaCadenas.mapaLongitudes(palabras);
         UtileriaNumeros.modificadorInventario(lista);
         HashMap<String, Integer> contador = UtileriaCadenas.contadorFrecuencias(frecuencia);
+        ArrayList<String> resultado = UtileriaCadenas.clasificadorPalabras(map, frec);
+        System.out.println("Mapa original: " + map);
+        System.out.println("Palabras con frecuencia menor a " + frecuencia + ": " + resultado);
+
     }
 }

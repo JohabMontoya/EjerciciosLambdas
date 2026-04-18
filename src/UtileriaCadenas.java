@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UtileriaCadenas {
@@ -63,11 +65,26 @@ public class UtileriaCadenas {
         // Recorre la lista y suma 1 por cada palabra (si no existe, empieza en 1)
         palabras.forEach(p -> {
             if(p != null)frecuencia.merge(p, 1, (p1, p2) -> p1 + p2);
-            });
+        });
         // Imprime el resultado
         System.out.println("La frecuencia de las palabras es:  " + frecuencia);
         return frecuencia;
     }
 
+    public static ArrayList<String> clasificadorPalabras(HashMap<String, Integer> map, int frecuencia) {
 
+        // Stream sobre las entradas del mapa
+        List<String> listaFiltrada = map.entrySet().stream()
+                // Mantiene solo las palabras con frecuencia
+                .filter(p -> p.getValue() < frecuencia)
+                // Convierte cada entrada a la palabra
+                .map(p -> p.getKey())
+                // Guarda el resultado en una lista
+                .collect(Collectors.toList());
+
+        // Convertimos la lista a ArrayList para cumplir con el tipo de retorno
+        ArrayList<String> resultado = new ArrayList<>(listaFiltrada);
+
+        return resultado;
+    }
 }
