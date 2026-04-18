@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -31,6 +30,7 @@ public class TareaLambdas {
         duplicados.add(2);
         duplicados.add(5);
         duplicados.add(5);
+        duplicados.add(-6);
 
         char letra = 'n';
         int tamanoCadena = 5;
@@ -95,13 +95,24 @@ public class TareaLambdas {
     }
 
     public static HashSet<Integer> cuadrosUnicos (ArrayList<Integer> numeros){
+
         System.out.println("Valores antes de modificarlos: " + numeros);
+        // Crea un HashSet con los resultados del stream
         HashSet<Integer> duplicados = new HashSet<>(
         numeros.stream()
+                // Filtra únicamente los números pares
                 .filter(n -> n %2 == 0)
+                // Convierte cada número par a su cuadrado
                 .map(n -> n * n)
+                // Recolecta los resultados en un Set
                 .collect(Collectors.toSet()));
+        // Imprime la lista original
         System.out.println("Valores después de modificarlos: " + duplicados );
+        // Regresa la cadena modificada.
         return duplicados;
+    }
+
+    public HashMap<> mapaLongitudes(){
+
     }
 }
